@@ -20,6 +20,15 @@ Plugin 'vim-jp/vim-cpp'
 Plugin 'vim-scripts/c.vim'
 Plugin 'vim-scripts/OmniCppComplete'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'terryma/vim-expand-region'
+Plugin 'scrooloose/syntastic'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,7 +43,6 @@ call vundle#end()            " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
 
 """"""""""""""""""""""""""
 """"""""GENERAL"""""""""""
@@ -64,6 +72,34 @@ let mapleader=","
 
 " Normal copy and paste
 set clipboard=unnamedplus
+
+" Turn on the WiLd menu
+set wildmenu
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+set wildignore+=.git\*,.hg\*,.svn\*
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases 
+set smartcase
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw 
+"
+" " For regular expressions turn magic on
+set magic
+"
+" " Show matching brackets when text indicator is over them
+set showmatch 
+" " How many tenths of a second to blink when matching brackets
+set mat=2
 
 set mouse=a
 
@@ -117,9 +153,9 @@ set backspace=indent,eol,start
 set lbr
 set tw=500
 
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
+"set ai "Auto indent
+"set si "Smart indent
+"set wrap "Wrap lines
 
 set tabstop=4
 set softtabstop=4
@@ -144,6 +180,10 @@ map <C-l> :NERDTreeSteppedClose<CR>
 noremap <C-j> 10j<CR>
 " Jump over 10 lines
 noremap <C-k> 12k<CR>
+
+" Treat long lines as break lines (useful when moving around in them)
+ map j gj
+ map k gk
 
 " Easy line moves in normal en visual mode
 nnoremap <S-Down> :m+<CR>
@@ -209,3 +249,16 @@ set completeopt=menuone,menu,longest,preview
 
 "let g:Powerline_symbols = 'fancy'
 set fillchars+=stl:\ ,stlnc:\
+
+""""""""""""""""""""""""""""""""
+""""""""""""SYNTASTIC"""""""""""
+""""""""""""""""""""""""""""""""
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
