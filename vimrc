@@ -19,7 +19,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'vim-jp/vim-cpp'
 Plugin 'vim-scripts/c.vim'
 Plugin 'vim-scripts/OmniCppComplete'
-Plugin 'Lokaltog/vim-powerline'
+Plugin 'bling/vim-airline'
 Plugin 'terryma/vim-expand-region'
 Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
@@ -51,7 +51,9 @@ call vundle#end()            " required
 """"""""GENERAL"""""""""""
 """"""""""""""""""""""""""
 
+let g:webdevicons_enable_ctrlp = 1
 set encoding=utf-8
+set t_Co=256
 
 filetype plugin indent on
 
@@ -60,7 +62,7 @@ set undolevels=700
 
 syntax on 
 "set background=dark
-colorscheme Monokai
+colorscheme mon 
 let g:solarized_termcolors=256
 
 
@@ -130,8 +132,8 @@ set number
 set cursorline
 
 " highlight the line number
-hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
-hi LineNr   ctermfg=white  guifg=#2b506e guibg=#000000 
+"hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
+"hi LineNr   ctermfg=white  guifg=#2b506e guibg=#000000 
 
 
 """""""""""""""""""""""""""
@@ -226,6 +228,9 @@ let g:neocomplcache_enable_at_startup = 1
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o
 set wildignore+=*/node_modules/*,*/bower_components/*,*/bower/*,*/cache/*,*/vendor/*
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = 'find %s -type f'     
+nmap <leader>p :CtrlPClearCache<CR>:CtrlPMRUFiles<CR>
 
 """"""""""""""""""""""""""""""""
 """"""""""""C++ LIB"""""""""""""
@@ -252,11 +257,15 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 set completeopt=menuone,menu,longest,preview
 
 """"""""""""""""""""""""""""""""
-""""""""""""POWERLINE"""""""""""
+"""""""""""""AIRLINE""""""""""""
 """"""""""""""""""""""""""""""""
 
-"let g:Powerline_symbols = 'fancy'
-set fillchars+=stl:\ ,stlnc:\
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'papercolor'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 
 """"""""""""""""""""""""""""""""
 """"""""""""SYNTASTIC"""""""""""
@@ -272,3 +281,29 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 au BufRead,BufNewFile *.twig set syntax=twig.vim
+
+""""""""""""""""""""""""""""""""
+""""""""""""SYNTASTIC"""""""""""
+""""""""""""""""""""""""""""""""
+
+
+ "This allows buffers to be hidden if you've modified a buffer.
+ " This is almost a must if you wish to use buffers in this way.
+ set hidden
+
+ " To open a new empty buffer
+ " This replaces :tabnew which I used to bind to this mapping
+ nmap <leader>T :enew<cr>
+
+ " Move to the next buffer
+ nmap <leader>l :bnext<CR>
+
+ " Move to the previous buffer
+ nmap <leader>h :bprevious<CR>
+
+ " Close the current buffer and move to the previous one
+ " This replicates the idea of closing a tab
+ nmap <leader>bq :bp <BAR> bd #<CR>
+
+ " Show all open buffers and their status
+ nmap <leader>bl :ls<CR>
