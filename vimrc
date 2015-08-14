@@ -51,7 +51,6 @@ call vundle#end()            " required
 """"""""GENERAL"""""""""""
 """"""""""""""""""""""""""
 
-let g:webdevicons_enable_ctrlp = 1
 set encoding=utf-8
 set t_Co=256
 
@@ -81,10 +80,6 @@ set clipboard=unnamedplus
 
 " Turn on the WiLd menu
 set wildmenu
-
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
-set wildignore+=.git\*,.hg\*,.svn\*
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -207,12 +202,15 @@ nnoremap <S-K> <C-W><C-K>
 nnoremap <S-L> <C-W><C-L>
 nnoremap <S-H> <C-W><C-H>
 
-" Gif config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-
 nnoremap <silent> <F8> :TlistToggle<CR>
 let Tlist_Show_One_File = 1
+
+""""""""""""""""""""""""""""""""
+""""""""""""NERDCOMMENTER""""""""""
+""""""""""""""""""""""""""""""""
+
+nmap <C-c> <leader>c<Space>
+ vmap <C-c> <leader>c<Space>
 
 """"""""""""""""""""""""""""""""
 """"""""""""EASYMOTION""""""""""
@@ -221,16 +219,26 @@ let Tlist_Show_One_File = 1
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:neocomplcache_enable_at_startup = 1
 
+nmap f <Plug>(easymotion-w)
+nmap F <Plug>(easymotion-e)
+nmap z <Plug>(easymotion-b)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
 
 """"""""""""""""""""""""""""""""
 """"""""""""CTRLP"""""""""""""""
 """"""""""""""""""""""""""""""""
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o
-set wildignore+=*/node_modules/*,*/bower_components/*,*/bower/*,*/cache/*,*/vendor/*
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = 'find %s -type f'     
+set wildignore+=*/tmp/*,.git,*~,*.so,*.swp,*.zip,*.o,*/node_modules/*,*/bower_components/*,*/bower/*,*/cache/*,*/vendor/*
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|\cache'
+"let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_user_command = 'find %s -type f'     
+let g:webdevicons_enable_ctrlp = 1
 nmap <leader>p :CtrlPClearCache<CR>:CtrlPMRUFiles<CR>
+if exists("g:ctrl_user_command")
+      unlet g:ctrlp_user_command
+  endif
 
 """"""""""""""""""""""""""""""""
 """"""""""""C++ LIB"""""""""""""
