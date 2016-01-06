@@ -32,6 +32,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'evidens/vim-twig'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'vim-scripts/YankRing.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -236,6 +237,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|\cache'
 "let g:ctrlp_user_command = 'find %s -type f'     
 let g:webdevicons_enable_ctrlp = 1
 nmap <leader>p :CtrlPClearCache<CR>:CtrlPMRUFiles<CR>
+nmap <C-m> :CtrlP<CR>
 if exists("g:ctrl_user_command")
       unlet g:ctrlp_user_command
   endif
@@ -301,7 +303,7 @@ au BufRead,BufNewFile *.twig set syntax=twig.vim
 
  " To open a new empty buffer
  " This replaces :tabnew which I used to bind to this mapping
- nmap <leader>T :enew<cr>
+ nmap <leader>t :enew<cr>
 
  " Move to the next buffer
  nmap <leader>l :bnext<CR>
@@ -311,7 +313,21 @@ au BufRead,BufNewFile *.twig set syntax=twig.vim
 
  " Close the current buffer and move to the previous one
  " This replicates the idea of closing a tab
- nmap <leader>bq :bp <BAR> bd #<CR>
+ nmap <leader>q :bp <BAR> bd #<CR>
 
  " Show all open buffers and their status
- nmap <leader>bl :ls<CR>
+ nmap <leader>ls :ls<CR>
+
+""""""""""""""""""""""""""""""""
+""""""""""""GITGUTTER"""""""""""
+""""""""""""""""""""""""""""""""
+
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
+
+""""""""""""""""""""""""""""""""
+""""""""""""YANGRING"""""""""""
+""""""""""""""""""""""""""""""""
+
+let g:yankring_replace_n_pkey='<leader>b'
+let g:yankring_replace_n_nkey='<leader>n'
