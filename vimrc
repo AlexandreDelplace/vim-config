@@ -34,6 +34,7 @@ Plugin 'evidens/vim-twig'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'Raimondi/delimitMate'
+Plugin 'rking/ag.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -207,6 +208,20 @@ nnoremap <S-H> <C-W><C-H>
 nnoremap <silent> <F8> :TlistToggle<CR>
 let Tlist_Show_One_File = 1
 
+"autocmd VimEnter * tab all
+"autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+
+nnoremap <F1> 1gt
+nnoremap <F2> 2gt
+nnoremap <F3> 3gt
+nnoremap <F4> 4gt
+nnoremap <F5> 5gt
+nnoremap <F6> 6gt
+nnoremap <F7> 7gt
+nnoremap <F8> 8gt
+nnoremap <F9> 9gt
+nnoremap <F0> 10gt
+
 """"""""""""""""""""""""""""""""
 """"""""""""NERDCOMMENTER""""""""""
 """"""""""""""""""""""""""""""""
@@ -375,7 +390,7 @@ function! s:my_cr_function()
     return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><space>  pumvisible() ? "\<C-n>" : "<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -409,3 +424,17 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+
+""""""""""""""""""""""""""""""""
+"""""""""""SNIPMATE""""""""""
+""""""""""""""""""""""""""""""""
+
+imap <C-w> <Plug>snipMateNextOrTrigger
+smap <C-w> <Plug>snipMateNextOrTrigger
+
+""""""""""""""""""""""""""""""""
+"""""""""""AG""""""""""
+""""""""""""""""""""""""""""""""
+let g:ag_working_path_mode="r"
+
