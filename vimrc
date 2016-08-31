@@ -34,6 +34,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'rking/ag.vim'
+Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,7 +64,7 @@ set undolevels=700
 
 syntax on 
 "set background=dark
-colorscheme mon 
+colorscheme molokai
 let g:solarized_termcolors=256
 
 
